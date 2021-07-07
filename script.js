@@ -32,6 +32,15 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+function play(e) {
+    const div = document.querySelector("div")
+    if (e.target.id === "") return
+    div.innerText = playRound(e.target.id, computerPlay())
+}
+
+
+window.addEventListener('click', play)
+
 function game() {
     let playerScore = 0
     let computerScore = 0

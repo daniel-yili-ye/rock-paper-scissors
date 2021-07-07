@@ -32,33 +32,39 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function play(e) {
-    const div = document.querySelector("div")
-    if (e.target.id === "") return
-    div.innerText = playRound(e.target.id, computerPlay())
-}
+let playerScore = 0
+let computerScore = 0
+const divComputer = document.querySelector("span[id='computer-score']")
+const divPlayer = document.querySelector("span[id='player-score']")
+divComputer.innerText = computerScore
+divPlayer.innerText = playerScore
 
-function game() {
-    let playerScore = 0
-    let computerScore = 0
-    while (computerScore < 5 && playerScore < 5) {
-        window.addEventListener('click', play)
-        // let selection = prompt("Please enter rock, paper, or scissors");
-        let result = playRound(selection, computerPlay())
-        console.log(result)
-        if (result.includes("Win")) {
-            playerScore += 1
-            console.log(playerScore)
-        }
-        else if (result.includes("Lose")) {
-            computerScore += 1
-            console.log(computerScore)
-        }
+function play(e) {
+    const divStatus = document.querySelector("div[id='status']")
+    if (e.target.id === "") return
+    let result = playRound(e.target.id, computerPlay())
+    divStatus.innerText = result
+    if (result.includes("Win")) {
+        playerScore += 1
+        divPlayer.innerText = playerScore
     }
-    if (playerScore == 5) {
-        return "You won!"
+    else if (result.includes("Lose")) {
+        computerScore += 1
+        divComputer.innerText = computerScore
     }
-    else {
-        return "Computer won!"
+    if (playerScore == 5 || computerScore == 5) {
+        let congrats = (playerScore == 5) ? "You won!" : "Computer won!"
+        setTimeout(() => {
+            alert(`${congrats}`)
+            playerScore = 0
+            computerScore = 0
+            divPlayer.innerText = playerScore
+            divComputer.innerText = computerScore
+            divStatus.innerText = ""
+        },1)
     }
 }
+window.addEventListener('click', play)
+
+
+

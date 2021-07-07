@@ -38,14 +38,12 @@ function play(e) {
     div.innerText = playRound(e.target.id, computerPlay())
 }
 
-
-window.addEventListener('click', play)
-
 function game() {
     let playerScore = 0
     let computerScore = 0
     while (computerScore < 5 && playerScore < 5) {
-        let selection = prompt("Please enter rock, paper, or scissors");
+        window.addEventListener('click', play)
+        // let selection = prompt("Please enter rock, paper, or scissors");
         let result = playRound(selection, computerPlay())
         console.log(result)
         if (result.includes("Win")) {

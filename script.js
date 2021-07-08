@@ -32,26 +32,40 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let playerScore = 0
-    let computerScore = 0
-    while (computerScore < 5 && playerScore < 5) {
-        let selection = prompt("Please enter rock, paper, or scissors");
-        let result = playRound(selection, computerPlay())
-        console.log(result)
-        if (result.includes("Win")) {
-            playerScore += 1
-            console.log(playerScore)
-        }
-        else if (result.includes("Lose")) {
-            computerScore += 1
-            console.log(computerScore)
-        }
+let playerScore = 0
+let computerScore = 0
+const spanComputer = document.querySelector("span[id='computer-score']")
+const spanPlayer = document.querySelector("span[id='player-score']")
+spanComputer.textContent = computerScore
+spanPlayer.textContent = playerScore
+
+function play(e) {
+    const divStatus = document.querySelector("div[id='status']")
+    console.log(e)
+    if (e.target.id === "") return
+    let result = playRound(e.target.id, computerPlay())
+    divStatus.innerText = result
+    if (result.includes("Win")) {
+        playerScore += 1
+        spanPlayer.textContent = playerScore
     }
-    if (playerScore == 5) {
-        return "You won!"
+    else if (result.includes("Lose")) {
+        computerScore += 1
+        spanComputer.textContent = computerScore
     }
-    else {
-        return "Computer won!"
+    if (playerScore == 5 || computerScore == 5) {
+        let congrats = (playerScore == 5) ? "You won!" : "Computer won!"
+        setTimeout(() => {
+            alert(`${congrats}`)
+            playerScore = 0
+            computerScore = 0
+            spanPlayer.textContent = playerScore
+            spanComputer.textContent = computerScore
+            divStatus.innerText = ""
+        },1)
     }
 }
+window.addEventListener('click', play)
+
+
+

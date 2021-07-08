@@ -34,23 +34,24 @@ function playRound(playerSelection, computerSelection) {
 
 let playerScore = 0
 let computerScore = 0
-const divComputer = document.querySelector("span[id='computer-score']")
-const divPlayer = document.querySelector("span[id='player-score']")
-divComputer.innerText = computerScore
-divPlayer.innerText = playerScore
+const spanComputer = document.querySelector("span[id='computer-score']")
+const spanPlayer = document.querySelector("span[id='player-score']")
+spanComputer.textContent = computerScore
+spanPlayer.textContent = playerScore
 
 function play(e) {
     const divStatus = document.querySelector("div[id='status']")
+    console.log(e)
     if (e.target.id === "") return
     let result = playRound(e.target.id, computerPlay())
     divStatus.innerText = result
     if (result.includes("Win")) {
         playerScore += 1
-        divPlayer.innerText = playerScore
+        spanPlayer.textContent = playerScore
     }
     else if (result.includes("Lose")) {
         computerScore += 1
-        divComputer.innerText = computerScore
+        spanComputer.textContent = computerScore
     }
     if (playerScore == 5 || computerScore == 5) {
         let congrats = (playerScore == 5) ? "You won!" : "Computer won!"
@@ -58,8 +59,8 @@ function play(e) {
             alert(`${congrats}`)
             playerScore = 0
             computerScore = 0
-            divPlayer.innerText = playerScore
-            divComputer.innerText = computerScore
+            spanPlayer.textContent = playerScore
+            spanComputer.textContent = computerScore
             divStatus.innerText = ""
         },1)
     }

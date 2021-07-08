@@ -1,0 +1,33 @@
+body {
+    font-family: 'Courier New', monospace;
+}
+
+button {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+  
+  /* Darker background on mouse-over */
+button:hover {
+    background-color: RoyalBlue;
+}
+
+.center {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score {
+    margin: 0px 50px;
+}
+
+.stat {
+    margin: 25px;
+}

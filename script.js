@@ -41,8 +41,7 @@ spanPlayer.textContent = playerScore
 
 function play(e) {
     const divStatus = document.querySelector("div[id='status']")
-    console.log(e)
-    if (e.target.id === "") return
+    if (e.target.id != "rock" && e.target.id != "paper" && e.target.id != "scissors") return
     let result = playRound(e.target.id, computerPlay())
     divStatus.innerText = result
     if (result.includes("Win")) {

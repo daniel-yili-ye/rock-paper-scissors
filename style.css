@@ -1,3 +1,7 @@
+html {
+    overflow-y: scroll;
+}
+
 body {
     font-family: 'Courier New', monospace;
 }
@@ -10,6 +14,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     margin: 10px;
+    border-radius: 10px;
 }
   
   /* Darker background on mouse-over */
@@ -27,14 +32,25 @@ button:hover {
     margin: 0px 50px;
 }
 
-.stat {
-    display: inline-block;
-    margin: 25px;
-    border: 1px solid DodgerBlue;
-    color: DodgerBlue;
+.win, .lose, .tie {
+    margin: 25px auto;
     padding: 10px;
     width: 340px;
     max-width: 100%;
-    height: 25px;
     border-radius: 10px;
+}
+
+.win {
+    border: 3px solid #03aa6d;
+    background-color: #cdeee2;
+}
+
+.lose {
+    border: 3px solid #ff0000;
+    background-color: #ffe6e6;
+}
+
+.tie {
+    border: 3px solid #FFAA1D;
+    background-color: #fff6e8;
 }

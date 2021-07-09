@@ -4,14 +4,14 @@
 <head>
     <title>✊✋✌</title>
     <script src="https://kit.fontawesome.com/5e0746e5f4.js" crossorigin="anonymous"></script>
-
+    <script src="https://www.wpromotions.eu/confetti.min.js"></script>
     <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
     <div class="center">
-        <h1>Rock, Paper, Scissors</h1>
+        <h1>Rock Paper Scissors</h1>
     </div>
     <div class="center">
         <button class="fas fa-hand-rock fa-4x" id="rock"></button>
@@ -19,14 +19,9 @@
         <button class="fas fa-hand-scissors fa-4x" id="scissors"></button>
     </div>
     <div class="center">
-        <h2>Score</h2>
+        <h2>Score: 💻 <span id="computer-score"></span> 👨 <span id="player-score"></span></h2>
     </div>
-    <div class="center">
-        <div class="score">💻: <span id="computer-score"></span></div>
-        <div class="score">👨: <span id="player-score"></span></div>
-    </div>
-    <div class="center">
-        <div class="stat" id="status"></div>
+    <div class="center" id="messages">
     </div>
     <script src="script.js"></script>
 </body>

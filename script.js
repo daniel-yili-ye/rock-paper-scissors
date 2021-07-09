@@ -11,24 +11,24 @@ function playRound(playerSelection, computerSelection) {
         if (playerSelection == "rock" && computerSelection == "paper") {
             status = "Lose"
         }
-        return `You ${status}! Paper beats Rock`
+        return `You ${status}! 📃 beats 🗿`
     }
     else if ((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "rock")) {
         let status = "Win"
         if (playerSelection == "scissors" && computerSelection == "rock") {
             status = "Lose"
         }
-        return `You ${status}! Rock beats Scissors`
+        return `You ${status}! 🗿 beats ✂️`
     }
     else if ((playerSelection == "paper" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "paper")) {
         let status = "Win"
         if (playerSelection == "paper" && computerSelection == "scissors") {
             status = "Lose"
         }
-        return `You ${status}! Scissors beats Paper`
+        return `You ${status}! ✂️ beats 📃`
     }
     else {
-        return "It's a tie!"
+        return "It's a 👔!"
     }
 }
 
@@ -40,27 +40,41 @@ spanComputer.textContent = computerScore
 spanPlayer.textContent = playerScore
 
 function play(e) {
-    const divStatus = document.querySelector("div[id='status']")
     if (e.target.id != "rock" && e.target.id != "paper" && e.target.id != "scissors") return
     let result = playRound(e.target.id, computerPlay())
-    divStatus.innerText = result
+    let node = document.createElement("div")
+    
     if (result.includes("Win")) {
         playerScore += 1
         spanPlayer.textContent = playerScore
+        node.classList.add('win')
     }
     else if (result.includes("Lose")) {
         computerScore += 1
         spanComputer.textContent = computerScore
+        node.classList.add('lose')
     }
+    else {
+        node.classList.add('tie')
+    }
+    
+    let text = document.createTextNode(result)
+    node.appendChild(text)
+    document.querySelector("div[id='messages']").prepend(node)
+    
     if (playerScore == 5 || computerScore == 5) {
         let congrats = (playerScore == 5) ? "You won!" : "Computer won!"
         setTimeout(() => {
             alert(`${congrats}`)
+            if (playerScore == 5) {
+                confetti.start()
+                setTimeout(() => {confetti.stop()}, 1000)
+            }
             playerScore = 0
             computerScore = 0
             spanPlayer.textContent = playerScore
             spanComputer.textContent = computerScore
-            divStatus.innerText = ""
+            document.querySelector("div[id='messages']").innerHTML = ""
         },1)
     }
 }
